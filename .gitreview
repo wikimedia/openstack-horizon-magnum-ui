@@ -1,4 +1,6 @@
 [gerrit]
-host=review.opendev.org
+host=gerrit.wikimedia.org
 port=29418
-project=openstack/magnum-ui.git
+project=openstack/horizon/magnum-ui.git
+track=1
+defaultrebase=0
