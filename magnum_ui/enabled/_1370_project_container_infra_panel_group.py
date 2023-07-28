@@ -31,7 +31,7 @@ ADD_JS_FILES = [
 ]
 
 ADD_SCSS_FILES = [
-    'dashboard/container-infra/clusters/clusters.scss'
+    'dashboard/container-infra/container-infra.scss'
 ]
 
 AUTO_DISCOVER_STATIC_FILES = True
