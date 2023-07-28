@@ -1,0 +1,3 @@
+recursive-include magnum_ui *.html *.scss *.js
+
+include LICENSE
