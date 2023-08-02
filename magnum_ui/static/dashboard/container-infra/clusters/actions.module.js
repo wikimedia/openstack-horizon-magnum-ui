@@ -113,13 +113,18 @@
           text: gettext('Resize Cluster')
         }
       })
-      .append({
-        id: 'rollingUpgradeClusterAction',
-        service: rollingUpgradeClusterService,
-        template: {
-          text: gettext('Rolling Cluster Upgrade')
-        }
-      })
+/**
+ *      Marked out as this doesn't work in our deployment (possibly because
+ *      we don't have tenant networking)
+ *
+ *      .append({
+ *       id: 'rollingUpgradeClusterAction',
+ *      service: rollingUpgradeClusterService,
+ *     template: {
+ *      text: gettext('Rolling Cluster Upgrade')
+ *   }
+ *})
+**/
       .append({
         id: 'deleteClusterAction',
         service: deleteClusterService,
