@@ -6,15 +6,16 @@
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
 # Andi Chandler <andi@gowling.com>, 2022. #zanata
 # Andi Chandler <andi@gowling.com>, 2023. #zanata
+# Andi Chandler <andi@gowling.com>, 2024. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: magnum-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2023-08-31 08:14+0000\n"
+"POT-Creation-Date: 2025-07-22 12:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2023-09-09 10:44+0000\n"
+"PO-Revision-Date: 2024-07-08 11:19+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -46,9 +47,6 @@ msgstr "API Server Port"
 msgid "Accessible on private network only"
 msgstr "Accessible on private network only"
 
-msgid "Accessible on the public internet"
-msgstr "Accessible on the public Internet"
-
 msgid "Additional Labels"
 msgstr "Additional Labels"
 
@@ -72,13 +70,6 @@ msgstr ""
 "Any addon software selected will be installed at the latest supported "
 "version when the cluster is deployed, but will not be upgraded automatically "
 "by rolling upgrades."
-
-msgid ""
-"Arbitrary labels in the form of key=value pairs to associate with a cluster "
-"templates. May be used multiple times."
-msgstr ""
-"Arbitrary labels in the form of key=value pairs to associate with a cluster "
-"templates. May be used multiple times."
 
 msgid "Auto Healing"
 msgstr "Auto Healing"
@@ -149,14 +140,17 @@ msgstr "Choose a Container Orchestration Engine"
 msgid "Choose a External Network"
 msgstr "Choose a External Network"
 
+msgid "Choose a Flavor for the Control Plane nodes"
+msgstr "Choose a Flavour for the Control Plane nodes"
+
 msgid "Choose a Flavor for the Master Node"
 msgstr "Choose a Flavour for the Master Node"
 
 msgid "Choose a Flavor for the Node"
 msgstr "Choose a Flavour for the Node"
 
-msgid "Choose a Flavor for the Worker Node"
-msgstr "Choose a Flavour for the Worker Node"
+msgid "Choose a Flavor for the Worker nodes"
+msgstr "Choose a Flavour for the Worker nodes"
 
 msgid "Choose a Keypair"
 msgstr "Choose a Keypair"
@@ -185,8 +179,14 @@ msgstr "Choose an Availability Zone"
 msgid "Choose an Image"
 msgstr "Choose an Image"
 
+msgid "Choose an existing Subnet"
+msgstr "Choose an existing Subnet"
+
 msgid "Choose an existing network"
 msgstr "Choose an existing network"
+
+msgid "Choose an existing subnet"
+msgstr "Choose an existing Subnet"
 
 msgid "Choose an ingress controller"
 msgstr "Choose an ingress controller"
@@ -203,9 +203,6 @@ msgstr "Cluster"
 #, python-format
 msgid "Cluster %s was successfully created."
 msgstr "Cluster %s was successfully created."
-
-msgid "Cluster API"
-msgstr "Cluster API"
 
 msgid "Cluster Create Timeout"
 msgstr "Cluster Create Timeout"
@@ -268,6 +265,18 @@ msgstr "Container Orchestration Engine"
 
 msgid "Container Version"
 msgstr "Container Version"
+
+msgid "Control Plane Addresses"
+msgstr "Control Plane Addresses"
+
+msgid "Control Plane Count"
+msgstr "Control Plane Count"
+
+msgid "Control Plane Nodes"
+msgstr "Control Plane Nodes"
+
+msgid "Control Plane size"
+msgstr "Control Plane size"
 
 msgid "Create"
 msgstr "Create"
@@ -383,14 +392,8 @@ msgstr "Docker Volume Size"
 msgid "Docker Volume Size (GB)"
 msgstr "Docker Volume Size (GB)"
 
-msgid "Enable Load Balancer for Master Nodes"
-msgstr "Enable Load Balancer for Master Nodes"
-
 msgid "Enable Registry"
 msgstr "Enable Registry"
-
-msgid "Enable docker registry in the cluster temlate. Default: False"
-msgstr "Enable docker registry in the cluster template. Default: False"
 
 msgid "Exists"
 msgstr "Exists"
@@ -413,8 +416,8 @@ msgstr "Flavour"
 msgid "Flavor ID"
 msgstr "Flavour ID"
 
-msgid "Flavor of Master Nodes"
-msgstr "Flavour of Master Nodes"
+msgid "Flavor of Control Plane Nodes"
+msgstr "Flavour of Control Plane Nodes"
 
 msgid "Flavor of Worker Nodes"
 msgstr "Flavour of Worker Nodes"
@@ -453,7 +456,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid ""
-"If Kubernetes is unable to schedule a Pod due to insuficient CPU or memory "
+"If Kubernetes is unable to schedule a Pod due to insufficient CPU or memory "
 "in the cluster, a worker node will be added, as long as the maximum number "
 "of worker nodes has not been reached."
 msgstr ""
@@ -465,16 +468,6 @@ msgid ""
 "If enabled, the minimum and maximum number of worker nodes must be specified."
 msgstr ""
 "If enabled, the minimum and maximum number of worker nodes must be specified."
-
-#, python-format
-msgid ""
-"If the aggregate resource limits of all existing Pods is lower than 50% of "
-"the cluster capacity, a worker node will be removed, as long as the minimum "
-"number of worker nodes has not been reached."
-msgstr ""
-"If the aggregate resource limits of all existing Pods is lower than 50% of "
-"the cluster capacity, a worker node will be removed, as long as the minimum "
-"number of worker nodes has not been reached."
 
 msgid "Image"
 msgstr "Image"
@@ -518,9 +511,6 @@ msgstr ""
 "Invalid format. Must be a comma-separated key-value string: key=value,"
 "key2=value2"
 
-msgid "It is generally not recommended to give public access."
-msgstr "It is generally not recommended to give public access."
-
 msgid "KEY1=VALUE1, KEY2=VALUE2..."
 msgstr "KEY1=VALUE1, KEY2=VALUE2..."
 
@@ -529,6 +519,12 @@ msgstr "Keypair"
 
 msgid "Kubernetes"
 msgstr "Kubernetes"
+
+msgid "Kubernetes API Address"
+msgstr "Kubernetes API Address"
+
+msgid "Kubernetes Version"
+msgstr "Kubernetes Version"
 
 msgid "Labels"
 msgstr "Labels"
@@ -541,26 +537,6 @@ msgstr "Loading"
 
 msgid "Make cluster template public. Default: False"
 msgstr "Make cluster template public. Default: False"
-
-msgid ""
-"Making the Kubernetes API accessible from anywhere on the public internet is "
-"convenient, but may represent a security risk. <em>[When selecting this "
-"option, it is recommended to limit access to a trusted IP address range.]</"
-"em>"
-msgstr ""
-"Making the Kubernetes API accessible from anywhere on the public internet is "
-"convenient, but may represent a security risk. <em>[When selecting this "
-"option, it is recommended to limit access to a trusted IP address range.]</"
-"em>"
-
-msgid ""
-"Making the Kubernetes API accessible from the private network only is the "
-"most secure option (the default), but access will be limited to compute "
-"instances on the same private network or a VPN to that network."
-msgstr ""
-"Making the Kubernetes API accessible from the private network only is the "
-"most secure option (the default), but access will be limited to compute "
-"instances on the same private network or a VPN to that network."
 
 msgid "Management"
 msgstr "Management"
@@ -585,9 +561,6 @@ msgstr "Master LB"
 
 msgid "Master LB Enabled"
 msgstr "Master LB Enabled"
-
-msgid "Master Nodes"
-msgstr "Master Nodes"
 
 msgid "Maximum Batch Size"
 msgstr "Maximum Batch Size"
@@ -616,9 +589,6 @@ msgstr "Name of the cluster template."
 msgid "Network"
 msgstr "Network"
 
-msgid "Network Access Control"
-msgstr "Network Access Control"
-
 msgid "Network Driver"
 msgstr "Network Driver"
 
@@ -646,11 +616,25 @@ msgstr "Nodes"
 msgid "None"
 msgstr "None"
 
-msgid "Number of Master Nodes"
-msgstr "Number of Master Nodes"
+msgid "Number of Control Plane nodes"
+msgstr "Number of Control Plane nodes"
 
 msgid "Number of Worker Nodes"
 msgstr "Number of Worker Nodes"
+
+msgid ""
+"Only an uneven number of control plane nodes are allowed. This provides the "
+"best balance of fault tolerance and cost."
+msgstr ""
+"Only an uneven number of control plane nodes are allowed. This provides the "
+"best balance of fault tolerance and cost."
+
+msgid ""
+"Only uneven number of control plane nodes are supported. This provides the "
+"best balance of fault tolerance and cost for etcd."
+msgstr ""
+"Only uneven number of control plane nodes are supported. This provides the "
+"best balance of fault tolerance and cost for etcd."
 
 msgid "Overlay"
 msgstr "Overlay"
@@ -745,6 +729,7 @@ msgstr "Show Certificate"
 msgid "Sign Certificate"
 msgstr "Sign Certificate"
 
+#, python-brace-format
 msgid "Sign Certificate To Cluster: {$ ctrl.model.cluster_name $}"
 msgstr "Sign Certificate To Cluster: {$ ctrl.model.cluster_name $}"
 
@@ -752,15 +737,13 @@ msgid "Size"
 msgstr "Size"
 
 msgid ""
-"Specify additional kube_labels to apply to the cluster or override labels "
-"set by the cluster template. Overriding labels set by the cluster template "
-"may result in your cluster being misconfigured, unstable or unable to be "
-"created."
+"Specify additional labels to apply to the cluster or override labels set by "
+"the cluster template. Overriding labels set by the cluster template may "
+"result in your cluster being misconfigured, unstable or unable to be created."
 msgstr ""
-"Specify additional kube_labels to apply to the cluster or override labels "
-"set by the cluster template. Overriding labels set by the cluster template "
-"may result in your cluster being misconfigured, unstable or unable to be "
-"created."
+"Specify additional labels to apply to the cluster or override labels set by "
+"the cluster template. Overriding labels set by the cluster template may "
+"result in your cluster being misconfigured, unstable or unable to be created."
 
 msgid "Specify the Container Orchestration Engine to use."
 msgstr "Specify the Container Orchestration Engine to use."
@@ -797,9 +780,6 @@ msgstr "TLS Disabled"
 msgid "The DNS nameserver to use for this cluster template"
 msgstr "The DNS nameserver to use for this cluster template"
 
-msgid "The URL of docker registry."
-msgstr "The URL of Docker registry."
-
 msgid "The cluster node count."
 msgstr "The cluster node count."
 
@@ -808,13 +788,6 @@ msgstr "The http_proxy address to use for nodes in cluster"
 
 msgid "The https_proxy address to use for nodes in cluster"
 msgstr "The https_proxy address to use for nodes in cluster"
-
-msgid ""
-"The key=value pair string is case insensitive and will be converted to lower "
-"case."
-msgstr ""
-"The key=value pair string is case insensitive and will be converted to lower "
-"case."
 
 msgid ""
 "The maximum number of Worker Nodes a new cluster can auto-scale to cannot be "
@@ -860,14 +833,20 @@ msgstr ""
 "The nova flavour id to use when launching the master node of the cluster. "
 "Default: m1.small"
 
-msgid "The number of master nodes for the cluster"
-msgstr "The number of master nodes for the cluster"
+msgid "The number of Control Plane nodes for the cluster"
+msgstr "The number of Control Plane nodes for the cluster"
 
 msgid "The number of worker nodes for the cluster"
 msgstr "The number of worker nodes for the cluster"
 
-msgid "The selected Cluster Template does not support multiple master nodes."
-msgstr "The selected Cluster Template does not support multiple master nodes."
+msgid ""
+"The selected options do not support multiple control plane nodes. A "
+"Kubernetes API Load Balancer is required, and can be enabled in the Network "
+"tab."
+msgstr ""
+"The selected options do not support multiple control plane nodes. A "
+"Kubernetes API Load Balancer is required, and can be enabled in the Network "
+"tab."
 
 msgid "The size in GB for Docker Volume. Default: 25"
 msgstr "The size in GB for Docker Volume. Default: 25"
@@ -911,10 +890,6 @@ msgid_plural "Unable to delete quotas: %s."
 msgstr[0] "Unable to delete quota: %s."
 msgstr[1] "Unable to delete quotas: %s."
 
-#, python-format
-msgid "Unable to delete the cluster template with id: %(id)s"
-msgstr "Unable to delete the cluster template with id: %(id)s"
-
 msgid "Unable to delete the cluster templates."
 msgstr "Unable to delete the cluster templates."
 
@@ -924,14 +899,6 @@ msgstr "Unable to delete the cluster with id: %(id)s"
 
 msgid "Unable to delete the clusters."
 msgstr "Unable to delete the clusters."
-
-#, python-format
-msgid ""
-"Unable to delete the quota with project id: %(projectId)s and resource: "
-"%(resource)s."
-msgstr ""
-"Unable to delete the quota with project id: %(projectId)s and resource: "
-"%(resource)s."
 
 msgid "Unable to get cluster's working nodes."
 msgstr "Unable to get cluster's working nodes."
@@ -1012,6 +979,10 @@ msgstr "Updated At"
 msgid "Use an Existing Network"
 msgstr "Use an Existing Network"
 
+msgid "Use an Existing Subnet"
+msgstr "Use an existing Subnet"
+
+#, python-brace-format
 msgid "Used {$ ctrl.stats.clusters $} of {$ ctrl.quota.clusters $}"
 msgstr "Used {$ ctrl.stats.clusters $} of {$ ctrl.quota.clusters $}"
 
@@ -1119,6 +1090,7 @@ msgid_plural "titles"
 msgstr[0] "title"
 msgstr[1] "titles"
 
+#, python-brace-format
 msgid "{$ ctrl.cluster.create_timeout $} minute"
 msgid_plural "{$ ctrl.cluster.create_timeout $} minutes"
 msgstr[0] "{$ ctrl.cluster.create_timeout $} minute"

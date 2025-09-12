@@ -32,6 +32,7 @@
       'horizon.dashboard.container-infra.clusters.actions',
       'horizon.dashboard.container-infra.clusters.details'
     ])
+    .decorator('actionsDirective', actionsDirectiveDecorator)
     .constant('horizon.dashboard.container-infra.clusters.events', events())
     .constant('horizon.dashboard.container-infra.clusters.resourceType', 'OS::Magnum::Cluster')
     .run(run)
@@ -77,13 +78,13 @@
       label: gettext('Health Status')
     })
     .setProperty('master_count', {
-      label: gettext('Master Count')
+      label: gettext('Control Plane Count')
     })
     .setProperty('node_count', {
       label: gettext('Node Count')
     })
-    .setProperty('keypair', {
-      label: gettext('Keypair')
+    .setProperty('coe_version', {
+      label: gettext('Kubernetes Version')
     })
     .setListFunction(clustersService.getClustersPromise)
     .tableColumns
@@ -115,7 +116,7 @@
       priority: 2
     })
     .append({
-      id: 'keypair',
+      id: 'coe_version',
       priority: 2
     });
 
@@ -159,7 +160,7 @@
       'singleton': true
     })
     .append({
-      'label': gettext('Master Count'),
+      'label': gettext('Control Plane Count'),
       'name': 'master_count',
       'singleton': true
     })
@@ -169,8 +170,8 @@
       'singleton': true
     })
     .append({
-      'label': gettext('Keypair'),
-      'name': 'keypair',
+      'label': gettext('Kubernetes Version'),
+      'name': 'coe_version',
       'singleton': true
     });
   }
@@ -195,5 +196,28 @@
     $routeProvider.when('/project/clusters', {
       templateUrl: path + 'panel.html'
     });
+  }
+
+  actionsDirectiveDecorator.$inject = [
+    '$delegate',
+    'horizon.dashboard.container-infra.clusters.utils'
+  ];
+
+  /**
+   * @param {Object} $delegate
+   * @param {Object} clustersUtils
+   * @description Extends behaviour of `horizon.framework.widgets.action-list.directive:actions`
+   * with business logic in clusters.getActionsDirectiveLinkFn();
+   * @return {Object} Returns the ammended directive.
+   */
+  function actionsDirectiveDecorator($delegate, clustersUtils) {
+    var directive = $delegate[0];
+
+    // Angular's `link` is wrapped inside the compile function
+    directive.compile = function() {
+      return clustersUtils.getActionsDirectiveLinkFn(directive);
+    };
+
+    return $delegate;
   }
 })();

@@ -48,6 +48,7 @@
       showCertificate: showCertificate,
       signCertificate: signCertificate,
       rotateCertificate: rotateCertificate,
+      rotateCredential: rotateCredential,
       getStats: getStats,
       getIngressControllers: getIngressControllers,
       getAddons: getAddons,
@@ -130,7 +131,7 @@
       });
     }
 
-    // FIXME(shu-mutou): Unused for batch-delete in Horizon framework in Feb, 2016.
+    // NOTE(shu-mutou): Unused for batch-delete in Horizon framework in Feb, 2016.
     function deleteClusters(ids) {
       return apiService.delete('/api/container_infra/clusters/', ids)
         .catch(function onError() {
@@ -174,12 +175,12 @@
     function deleteClusterTemplate(id, suppressError) {
       var promise = apiService.delete('/api/container_infra/cluster_templates/', [id]);
       return suppressError ? promise : promise.catch(function onError() {
-        var msg = gettext('Unable to delete the cluster template with id: %(id)s');
+        var msg = gettext('Unable to delete the cluster template with ID: %(id)s');
         toastService.add('error', interpolate(msg, { id: id }, true));
       });
     }
 
-    // FIXME(shu-mutou): Unused for batch-delete in Horizon framework in Feb, 2016.
+    // NOTE(shu-mutou): Unused for batch-delete in Horizon framework in Feb, 2016.
     function deleteClusterTemplates(ids) {
       return apiService.delete('/api/container_infra/cluster_templates/', ids)
         .catch(function onError() {
@@ -209,6 +210,25 @@
       return apiService.delete('/api/container_infra/certificates/' + id, [id])
         .catch(function onError() {
           toastService.add('error', gettext('Unable to rotate the certificate.'));
+        });
+    }
+
+    /////////////////
+    // Credentials //
+    /////////////////
+
+    function rotateCredential(id) {
+      return apiService.patch('/api/container_infra/credentials/' + id)
+        .catch(function onError(response) {
+          var msg, params;
+          if (response && response.data) {
+            msg = gettext('Unable to rotate credentials for cluster %(id)s: %(reason)s.');
+            params = { id: id, reason: response.data };
+          } else {
+            msg = gettext('Unable to rotate credentials for cluster %(id)s.');
+            params = { id: id };
+          }
+          toastService.add('error', interpolate(msg, params, true));
         });
     }
 
@@ -284,7 +304,7 @@
       var promise = apiService.delete('/api/container_infra/quotas/' + projectId + '/' + resource,
         {project_id: projectId, resource: resource});
       return suppressError ? promise : promise.catch(function onError() {
-        var msg = gettext('Unable to delete the quota with project id: %(projectId)s and ' +
+        var msg = gettext('Unable to delete the quota with project ID: %(projectId)s and ' +
           'resource: %(resource)s.');
         toastService.add('error',
           interpolate(msg, { projectId: projectId, resource: resource }, true));

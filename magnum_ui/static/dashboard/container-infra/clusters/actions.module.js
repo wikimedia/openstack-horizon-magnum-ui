@@ -39,6 +39,7 @@
     'horizon.dashboard.container-infra.clusters.show-certificate.service',
     'horizon.dashboard.container-infra.clusters.sign-certificate.service',
     'horizon.dashboard.container-infra.clusters.rotate-certificate.service',
+    'horizon.dashboard.container-infra.clusters.rotate-credential.service',
     'horizon.dashboard.container-infra.clusters.config.service',
     'horizon.dashboard.container-infra.clusters.resourceType'
   ];
@@ -53,6 +54,7 @@
     showCertificateService,
     signCertificateService,
     rotateCertificateService,
+    rotateCredentialService,
     getClusterConfigService,
     resourceType) {
 
@@ -125,6 +127,14 @@
  *   }
  *})
 **/
+      .append({
+        id: 'rotateCredentialAction',
+        service: rotateCredentialService,
+        template: {
+          type: 'danger',
+          text: gettext('Rotate Cluster Credentials')
+        }
+      })
       .append({
         id: 'deleteClusterAction',
         service: deleteClusterService,

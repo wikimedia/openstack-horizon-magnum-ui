@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: magnum-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2020-04-02 03:39+0000\n"
+"POT-Creation-Date: 2025-07-22 12:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,13 +29,6 @@ msgstr "API Server Port"
 
 msgid "An arbitrary human-readable name"
 msgstr "nama human-readable sebarang"
-
-msgid ""
-"Arbitrary labels in the form of key=value pairs to associate with a cluster "
-"templates. May be used multiple times."
-msgstr ""
-"Label sebarang dalam bentuk key-value pairs untuk mengasosiasikan dengan "
-"template klaster. Dapat digunakan beberapa kali."
 
 msgid "CHECK COMPLETE"
 msgstr "CHECK COMPLETE (cek lengkap)"
@@ -276,9 +269,6 @@ msgstr "Docker Volume Size (GB)"
 msgid "Enable Registry"
 msgstr "Enable Registry (aktifkan registry)"
 
-msgid "Enable docker registry in the cluster temlate. Default: False"
-msgstr "Aktifkan registri docker di klaster template. Default: False"
-
 msgid "Exists"
 msgstr "Exists"
 
@@ -490,6 +480,7 @@ msgstr "Show Certificate (tampilkan sertifikat)"
 msgid "Sign Certificate"
 msgstr "Sign Certificate"
 
+#, python-brace-format
 msgid "Sign Certificate To Cluster: {$ ctrl.model.cluster_name $}"
 msgstr "Sign Certificate To Cluster: {$ ctrl.model.cluster_name $}"
 
@@ -531,9 +522,6 @@ msgstr "TLS Disabled (TLS tidak aktif)"
 
 msgid "The DNS nameserver to use for this cluster template"
 msgstr "Nameserver DNS digunakan untuk template klaster ini."
-
-msgid "The URL of docker registry."
-msgstr "URL dari registry docker"
 
 msgid "The cluster node count."
 msgstr "Jumlah node klaster."
@@ -606,10 +594,6 @@ msgid "Unable to delete quota: %s."
 msgid_plural "Unable to delete quotas: %s."
 msgstr[0] "Unable to delete quota: %s."
 
-#, python-format
-msgid "Unable to delete the cluster template with id: %(id)s"
-msgstr "Tidak dapat menghapus template klaster dengan id: %(id)s"
-
 msgid "Unable to delete the cluster templates."
 msgstr "Tidak dapat menghapus template klaster."
 
@@ -619,14 +603,6 @@ msgstr "Tidak dapat menghapus klaster dengan id: %(id)s"
 
 msgid "Unable to delete the clusters."
 msgstr "Tidak dapat menghapus klaster."
-
-#, python-format
-msgid ""
-"Unable to delete the quota with project id: %(projectId)s and resource: "
-"%(resource)s."
-msgstr ""
-"Tidak dapat menghapus kuota dengan project id: %(projectId)s dan resource: "
-"%(resource)s."
 
 msgid "Unable to retrieve the certificate."
 msgstr "Tidak dapat mengambil sertifikat."
@@ -682,6 +658,7 @@ msgstr "Updated (diperbaharui)"
 msgid "Updated At"
 msgstr "Updated At"
 
+#, python-brace-format
 msgid "Used {$ ctrl.stats.clusters $} of {$ ctrl.quota.clusters $}"
 msgstr "Used {$ ctrl.stats.clusters $} dari {$ ctrl.quota.clusters $}"
 
@@ -756,6 +733,7 @@ msgid "title"
 msgid_plural "titles"
 msgstr[0] "judul"
 
+#, python-brace-format
 msgid "{$ ctrl.cluster.create_timeout $} minute"
 msgid_plural "{$ ctrl.cluster.create_timeout $} minutes"
 msgstr[0] "{$ ctrl.cluster.create_timeout $} minute"

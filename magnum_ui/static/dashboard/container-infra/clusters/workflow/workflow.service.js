@@ -44,6 +44,12 @@
   // comma-separated key=value with optional space after comma
   var REGEXP_KEY_VALUE = /^(\w+=[^,]+,?\s?)+$/;
 
+  // Comma-separated CIDR list. Allows lots of variation to include v4 and v6.
+  var REGEXP_CIDR_LIST = /^[a-f0-9\.:]+\/[0-9]+(,\s?[a-f0-9\.:]+\/[0-9]+)*$/;
+
+  // Object name, must start with alphabetical character.
+  var REGEXP_CLUSTER_NAME = /^[a-zA-Z][a-zA-Z0-9_\-\.]*$/;
+
   function ClusterWorkflow($q, basePath, gettext, magnum, neutron, nova) {
     var workflow = {
       init: init
@@ -59,9 +65,9 @@
         name: gettext('Choose an Availability Zone')}];
       var keypairsTitleMap = [{value: '', name: gettext('Choose a Keypair')}];
       var masterFlavorTitleMap = [{value: '',
-        name: gettext('Choose a Flavor for the Master Node')}];
+        name: gettext('Choose a Flavor for the Control Plane nodes')}];
       var workerFlavorTitleMap = [{value: '',
-        name: gettext('Choose a Flavor for the Worker Node')}];
+        name: gettext('Choose a Flavor for the Worker nodes')}];
       var networkTitleMap = [{value: '', name: gettext('Choose an existing network')}];
       var subnetTitleMap = [{value: '', name: fixedSubnetsInitial}];
       var ingressTitleMap = [{value: '', name: gettext('Choose an ingress controller')}];
@@ -86,7 +92,8 @@
 
           'master_count': {
             type: 'number',
-            minimum: 1
+            minimum: 1,
+            maximum: 7,
           },
           'master_flavor_id': { type: 'string' },
           'node_count': {
@@ -101,11 +108,12 @@
           },
           'max_node_count': { type: 'number' },
 
-          'master_lb_enabled': {type: 'boolean'},
+          'master_lb_enabled': { type: 'boolean' },
           'create_network': { type: 'boolean' },
           'fixed_network': { type: 'string' },
           'fixed_subnet': { type: 'string' },
-          'floating_ip_enabled': { type: 'boolean' },
+          'master_lb_floating_ip_enabled': { type: 'boolean' },
+          'api_master_lb_allowed_cidrs': { type: 'string' },
           'ingress_controller': { type: 'object' },
 
           'auto_healing_enabled': { type: 'boolean' },
@@ -117,9 +125,17 @@
 
       var formMasterCount = {
         key: 'master_count',
-        title: gettext('Number of Master Nodes'),
-        placeholder: gettext('The number of master nodes for the cluster'),
-        required: true
+        title: gettext('Number of Control Plane nodes'),
+        placeholder: gettext('The number of Control Plane nodes for the cluster'),
+        required: true,
+        validationMessage: {
+          'mustBeUnevenNumber': 'Supported control plane sizes are 1, 3, 5 or 7.'
+        },
+        $validators: {
+          mustBeUnevenNumber: function(value) {
+            return value % 2 !== 0;
+          }
+        }
       };
 
       // Disable the Master Count field, if only a single master is allowed
@@ -151,7 +167,18 @@
                       key: 'name',
                       title: gettext('Cluster Name'),
                       placeholder: gettext('Name of the cluster'),
-                      required: true
+                      required: true,
+                      help: "Text",
+                      validationMessage: {
+                        'invalidFormat': 'Cluster name must begin with an alphabetical ' +
+                                         'character and only contain alphanumeric, underscore, ' +
+                                         'dash and fullstop characters.'
+                      },
+                      $validators: {
+                        invalidFormat: function(value) {
+                          return REGEXP_CLUSTER_NAME.test(value);
+                        }
+                      }
                     },
                     {
                       key: 'cluster_template_id',
@@ -203,7 +230,7 @@
                   items: [
                     {
                       type: 'fieldset',
-                      title: gettext('Master Nodes'),
+                      title: gettext('Control Plane Nodes'),
                       items: [
                         formMasterCount,
                         // Info message explaining why only single master node is enabled
@@ -211,14 +238,27 @@
                           type: 'template',
                           template: '<div class="alert alert-info">' +
                             '<span class="fa fa-info-circle"></span> ' +
-                            gettext('The selected Cluster Template does not support ' +
-                            'multiple master nodes.') +
+                            gettext('The selected options do not support ' +
+                            'multiple control plane nodes. A Kubernetes ' +
+                            'API Load Balancer is required, and can be ' +
+                            'enabled in the Network tab.') +
                             '</div>',
                           condition: 'model.isSingleMasterNode == true'
                         },
+                        // Info message explaining why we allow only uneven numbers of
+                        // control plane nodes.
+                        {
+                          type: 'template',
+                          template: '<div class="alert alert-info">' +
+                            '<span class="fa fa-info-circle"></span> ' +
+                            gettext('Only an uneven number of control plane nodes are allowed. ' +
+                              'This provides the best balance of fault tolerance and cost.') +
+                            '</div>',
+                          condition: 'false'
+                        },
                         {
                           key: 'master_flavor_id',
-                          title: gettext('Flavor of Master Nodes'),
+                          title: gettext('Flavor of Control Plane Nodes'),
                           type: 'select',
                           titleMap: masterFlavorTitleMap,
                           required: true
@@ -304,7 +344,6 @@
                         }
                       ]
                     }
-
                   ]
                 }
               ]
@@ -314,7 +353,7 @@
               help: basePath + 'clusters/workflow/network.help.html',
               type: 'section',
               htmlClass: 'row',
-              required: true,
+              required: false,
               items: [
                 {
                   type: 'section',
@@ -325,18 +364,14 @@
                       title: gettext('Network'),
                       items: [
                         {
-                          key: 'master_lb_enabled',
-                          type: 'checkbox',
-                          title: gettext('Enable Load Balancer for Master Nodes')
-                        },
-                        {
                           key: 'create_network',
                           title: gettext('Create New Network'),
                           onChange: function(isNewNetwork) {
-                            if (isNewNetwork) {
-                              model.fixed_network = MODEL_DEFAULTS.fixed_network;
-                              model.fixed_subnet = MODEL_DEFAULTS.fixed_subnet;
-                            }
+                            // Reset relevant field selections
+                            model.fixed_network = MODEL_DEFAULTS.fixed_network;
+                            model.fixed_subnet = MODEL_DEFAULTS.fixed_subnet;
+                            // Network tab has required fields based on this checkbox.
+                            form[0].tabs[2].required = !isNewNetwork;
                           }
                         },
                         {
@@ -362,25 +397,65 @@
                     },
                     {
                       type: 'fieldset',
-                      title: gettext('Network Access Control'),
+                      title: gettext('Kubernetes API Loadbalancer'),
                       items: [
                         {
-                          key: 'floating_ip_enabled',
+                          key: 'master_lb_enabled',
+                          type: 'checkbox',
+                          title: gettext('Enable Load Balancer for Kubernetes API'),
+                          onChange: function(value) {
+                            if (value) {
+                              model.master_count = MODEL_DEFAULTS.master_count;
+                              // Reset values to defaults. They are null after being disabled.
+                              model.master_lb_floating_ip_enabled =
+                                MODEL_DEFAULTS.master_lb_floating_ip_enabled;
+                              model.api_master_lb_allowed_cidrs =
+                                MODEL_DEFAULTS.api_master_lb_allowed_cidrs;
+                            } else {
+                              // Without master_lb_enabled, we can only support
+                              // a single master node.
+                              model.master_count = 1;
+                            }
+                            model.isSingleMasterNode = !value;
+                          }
+                        },
+                        {
+                          key: 'master_lb_floating_ip_enabled', // formerly floating_ip_enabled
                           type: 'select',
-                          title: gettext('Cluster API'),
+                          title: gettext('Floating IP'),
                           titleMap: [
                             {value: false, name: gettext('Accessible on private network only')},
-                            {value: true, name: gettext('Accessible on the public internet')}
-                          ]
+                            {value: true, name: gettext('Accessible with public floating IP')}
+                          ],
+                          condition: 'model.master_lb_enabled === true'
                         },
-                        // Warning message for the Cluster API
+                        {
+                          key: 'api_master_lb_allowed_cidrs',
+                          type: 'text',
+                          title: gettext('Allowed CIDRs'),
+                          validationMessage: {
+                            invalidFormat: gettext('Invalid format. Must be a comma-separated ' +
+                              'CIDR string: 192.168.1.5/32,10.0.0.1/24')
+                          },
+                          $validators: {
+                            invalidFormat: function(cidrString) {
+                              return cidrString === '' || REGEXP_CIDR_LIST.test(cidrString);
+                            }
+                          },
+                          condition: 'model.master_lb_enabled === true',
+                        },
+                        // Warning message when Kubernetes API has a Floating IP
                         {
                           type: 'template',
                           template: '<div class="alert alert-warning">' +
                             '<span class="fa fa-warning"></span> ' +
-                            gettext('It is generally not recommended to give public access.') +
+                            gettext('A public floating IP will mean the Kubernetes API is ' +
+                              'publically routable on the internet. It is generally not ' +
+                              'recommended to give public access to the Kubernetes API. ' +
+                              'Consider limiting the access using the Allowed CIDRs ' +
+                              'section.') +
                             '</div>',
-                          condition: 'model.floating_ip_enabled == true'
+                          condition: 'model.master_lb_floating_ip_enabled == true'
                         }
                       ]
                     },
@@ -502,7 +577,8 @@
           create_network: true,
           fixed_network: '',
           fixed_subnet: '',
-          floating_ip_enabled: false,
+          master_lb_floating_ip_enabled: false,
+          api_master_lb_allowed_cidrs: '',
           ingress_controller: '',
 
           auto_healing_enabled: true,
@@ -598,7 +674,7 @@
 
       function changeFixedNetwork(model) {
         if (model.fixed_network) {
-          subnetTitleMap = [{value:"", name: gettext("Choose an existing Subnet")}];
+          subnetTitleMap = [{value: "", name: gettext("Choose an existing Subnet")}];
           angular.forEach(networkTitleMap, function(network) {
             if (network.value === model.fixed_network) {
               angular.forEach(network.subnets, function(subnet) {
@@ -607,10 +683,11 @@
             }
           });
         } else {
-          fixedSubnets = [{value:"", name: fixedSubnetsInitial}];
-          model.fixed_subnet = "";
+          fixedSubnets = [{value: "", name: fixedSubnetsInitial}];
         }
-        form[0].tabs[2].items[0].items[0].items[3].titleMap = subnetTitleMap;
+        // NOTE(dalees): This hardcoded index could be improved by referencing an object instead.
+        form[0].tabs[2].items[0].items[0].items[2].titleMap = subnetTitleMap;
+        model.fixed_subnet = MODEL_DEFAULTS.fixed_subnet;
       }
 
       function onGetIngressControllers(response) {
