@@ -1,19 +1,13 @@
-# Aleksey Alekseenko <9118250541@mail.ru>, 2016. #zanata
-# Alexander <ainikitenkov@gmail.com>, 2016. #zanata
-# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
-# Veronika Stepurova <vstepurova@hystax.com>, 2016. #zanata
-# Dmitriy Rabotyagov <noonedeadpunk@ya.ru>, 2020. #zanata
-# Dmitriy Chubinidze <dcu995@gmail.com>, 2025. #zanata
-# Ivan Anfimov <lazekteam@gmail.com>, 2025. #zanata
+# Ivan Anfimov <lazekteam@gmail.com>, 2026. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: magnum-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-04 01:39+0000\n"
+"POT-Creation-Date: 2026-06-01 06:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-09-08 11:00+0000\n"
+"PO-Revision-Date: 2026-06-01 12:24+0000\n"
 "Last-Translator: Ivan Anfimov <lazekteam@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -44,17 +38,14 @@ msgstr ""
 "предоставлять публичный доступ к API Kubernetes. Рассмотрите возможность "
 "ограничения доступа с помощью раздела \"Разрешенные CIDR\"."
 
-msgid "ADOPT COMPLETE"
-msgstr "Принятие завершено"
-
 msgid "API Address"
 msgstr "Адрес API"
 
 msgid "API Loadbalancer: Allowed CIDRs"
-msgstr "API Loadbalancer: разрешенные CIDR"
+msgstr "API балансировщика нагрузки: разрешенные CIDR"
 
 msgid "API Loadbalancer: Floating IP"
-msgstr "API Loadbalancer: плавающий IP"
+msgstr "API балансировщика нагрузки: плавающий IP"
 
 msgid "API Server Port"
 msgstr "Порт API сервера"
@@ -63,7 +54,7 @@ msgid "Accessible on private network only"
 msgstr "Доступен только в приватной сети"
 
 msgid "Accessible with public floating IP"
-msgstr "Доступен по публичному плавающему IP"
+msgstr "Доступен с публичным плавающим IP"
 
 msgid "Additional Labels"
 msgstr "Дополнительные метки"
@@ -73,6 +64,9 @@ msgstr "Дополнительное программное обеспечени
 
 msgid "Addon software"
 msgstr "Дополнительное программное обеспечение"
+
+msgid "Adopt complete"
+msgstr "Принятие завершено"
 
 msgid "Advanced"
 msgstr "Дополнительно"
@@ -121,23 +115,11 @@ msgstr "Автоматически восстанавливать нездоро
 msgid "Availability Zone"
 msgstr "Зона доступности"
 
-msgid "CHECK COMPLETE"
-msgstr "Проверка завершена"
-
 msgid "COE"
 msgstr "COE"
 
 msgid "COE Version"
 msgstr "Версия COE"
-
-msgid "CREATE COMPLETE"
-msgstr "Создание завершено"
-
-msgid "CREATE FAILED"
-msgstr "Создание не удалось"
-
-msgid "CREATE IN PROGRESS"
-msgstr "Выполняется создание"
 
 msgid "CSR"
 msgstr "CSR"
@@ -155,6 +137,9 @@ msgstr "Сертификат %s был успешно обновлен."
 #, python-format
 msgid "Certificate %s was successfully signed."
 msgstr "Сертификат %s был успешно подписан."
+
+msgid "Check complete"
+msgstr "Проверка завершена"
 
 msgid "Choose a Cluster Template"
 msgstr "Выберите шаблон кластера"
@@ -245,7 +230,7 @@ msgid "Cluster Template"
 msgstr "Шаблон кластера"
 
 msgid "Cluster Template Detail"
-msgstr "Детали шаблона кластера"
+msgstr "Подробности шаблона кластера"
 
 msgid "Cluster Template Name"
 msgstr "Имя шаблона кластера"
@@ -274,7 +259,7 @@ msgid "Clusters"
 msgstr "Кластеры"
 
 msgid "Confirm Credential Rotation"
-msgstr "Подтвердите ротацию учетных данных"
+msgstr "Подтвердите смену учетных данных"
 
 msgid "Confirm Delete Cluster"
 msgid_plural "Confirm Delete Clusters"
@@ -330,6 +315,15 @@ msgstr "Создать новую сеть"
 msgid "Create Quota"
 msgstr "Создать квоту"
 
+msgid "Create complete"
+msgstr "Создание завершено"
+
+msgid "Create failed"
+msgstr "Создание не удалось"
+
+msgid "Create in progress"
+msgstr "Выполняется создание"
+
 msgid "Created"
 msgstr "Создан"
 
@@ -338,19 +332,10 @@ msgstr "Создано в"
 
 #, python-format
 msgid "Credentials successfully rotated for cluster \"%(name)s\" (%(id)s)."
-msgstr "Учетные данные успешно заменены для кластера \"%(name)s\" (%(id)s)."
+msgstr "Учетные данные успешно обновлены для кластера \"%(name)s\" (%(id)s)."
 
 msgid "DC/OS"
 msgstr "DC/OS"
-
-msgid "DELETE COMPLETE"
-msgstr "Удаление завершено"
-
-msgid "DELETE FAILED"
-msgstr "Удаление не удалось"
-
-msgid "DELETE IN PROGRESS"
-msgstr "Выполняется удаление"
 
 msgid "DNS"
 msgstr "DNS"
@@ -382,6 +367,15 @@ msgstr[2] "Удалить квоты"
 msgid "Delete Quotas"
 msgstr "Удалить квоты"
 
+msgid "Delete complete"
+msgstr "Удаление завершено"
+
+msgid "Delete failed"
+msgstr "Удаление не удалось"
+
+msgid "Delete in progress"
+msgstr "Выполняется удаление"
+
 #, python-format
 msgid "Deleted cluster template: %s."
 msgid_plural "Deleted cluster templates: %s."
@@ -392,9 +386,9 @@ msgstr[2] "Удалены шаблоны кластера: %s."
 #, python-format
 msgid "Deleted cluster: %s."
 msgid_plural "Deleted clusters: %s."
-msgstr[0] "Удален кластер: %s."
-msgstr[1] "Удалены кластеры: %s."
-msgstr[2] "Удалены кластеры: %s."
+msgstr[0] "Кластер удален: %s."
+msgstr[1] "Кластеры удалены: %s."
+msgstr[2] "Кластеры удалены: %s."
 
 #, python-format
 msgid "Deleted quota: %s."
@@ -527,7 +521,7 @@ msgid ""
 msgstr ""
 "Если совокупные ограничения ресурсов всех существующих подов ниже 50 "
 "процентов емкости кластера, рабочий узел будет удален до тех пор, пока не "
-"будет достигнуто минимальное количество рабочих узлов. "
+"будет достигнуто минимальное количество рабочих узлов."
 
 msgid ""
 "If this field is left empty, the API Loadbalancer will accept connections "
@@ -566,7 +560,7 @@ msgid "Info"
 msgstr "Информация"
 
 msgid "Ingress"
-msgstr "Входящий"
+msgstr "Ingress"
 
 msgid "Ingress Controller"
 msgstr "Ingress контроллер"
@@ -760,10 +754,10 @@ msgid ""
 "deployed to Kubernetes are not following the best practices outlined in the "
 "documentation (for example, not using multiple replicas)."
 msgstr ""
-"Обратите внимание, что обновления могут привести к простою приложения, если "
-"рабочие нагрузки, развернутые в Kubernetes, не соответствуют лучшим "
-"практикам, изложенным в документации (например, не используются несколько "
-"реплик)."
+"Пожалуйста, обратите внимание, что обновления могут привести к простою "
+"приложения, если рабочие нагрузки, развернутые в Kubernetes, не "
+"соответствуют лучшим практикам, изложенным в документации (например, не "
+"используются несколько реплик)."
 
 msgid "Project"
 msgstr "Проект"
@@ -788,15 +782,6 @@ msgstr "Квота %s/%s была успешно обновлена."
 msgid "Quotas"
 msgstr "Квоты"
 
-msgid "RESTORE COMPLETE"
-msgstr "Восстановление завершено"
-
-msgid "RESUME COMPLETE"
-msgstr "Возобновление завершено"
-
-msgid "ROLLBACK COMPLETE"
-msgstr "Откат завершен"
-
 msgid "Record Properties"
 msgstr "Свойства записи"
 
@@ -809,8 +794,17 @@ msgstr "Изменить размер кластера"
 msgid "Resource"
 msgstr "Ресурс"
 
+msgid "Restore complete"
+msgstr "Восстановление завершено"
+
+msgid "Resume complete"
+msgstr "Возобновление завершено"
+
 msgid "Rexray"
 msgstr "Rexray"
+
+msgid "Rollback complete"
+msgstr "Откат завершен"
 
 msgid "Rolling Cluster Upgrade"
 msgstr "Пошаговое обновление кластера"
@@ -819,10 +813,7 @@ msgid "Rotate Certificate"
 msgstr "Обновить сертификат"
 
 msgid "Rotate Cluster Credentials"
-msgstr "Ротировать учетные данные кластера"
-
-msgid "SNAPSHOT COMPLETE"
-msgstr "Снимок создан успешно"
+msgstr "Сменить учетные данные кластера"
 
 msgid "Security Updates"
 msgstr "Обновления безопасности"
@@ -843,6 +834,9 @@ msgstr "Подписать cертификат для кластера: {$ ctrl.
 msgid "Size"
 msgstr "Размер"
 
+msgid "Snapshot complete"
+msgstr "Снимок успешно создан"
+
 msgid ""
 "Specify additional labels to apply to the cluster or override labels set by "
 "the cluster template. Overriding labels set by the cluster template may "
@@ -862,7 +856,7 @@ msgstr ""
 "Укажите сервер имен для использования в шаблоне кластера. По умолчанию: "
 "8.8.8.8"
 
-msgid "Specify the size in GB for the docker volume"
+msgid "Specify the size in GB for the Docker Volume"
 msgstr "Укажите размер тома Docker в ГБ"
 
 msgid "Stack"
@@ -934,7 +928,8 @@ msgid ""
 "exceed the total amount of Worker Nodes."
 msgstr ""
 "Минимальное количество рабочих узлов до которого новый кластер может "
-"масштабироваться не может превышать общее количество рабочих узлов."
+"автоматически масштабироваться, не может превышать общее количество рабочих "
+"узлов."
 
 msgid "The name or UUID of the SSH keypair to load into the cluster nodes."
 msgstr "Имя или UUID ключевой пары SSH для загрузки в узлы кластера."
@@ -954,8 +949,8 @@ msgid ""
 "The nova flavor id to use when launching the master node of the cluster. "
 "Default: m1.small"
 msgstr ""
-"ID шаблона конфигурации при запуске мастер узла кластера. По умолчанию: m1."
-"small"
+"ID шаблона конфигурации nova при запуске мастер узла кластера. По умолчанию: "
+"m1.small"
 
 msgid "The number of Control Plane nodes for the cluster"
 msgstr "Количество узлов управляющего слоя для кластера"
@@ -979,15 +974,6 @@ msgid "This should really be named fixed-network-cidr. Default: 10.0.0.0/24"
 msgstr ""
 "Здесь должен быть указан CIDR фиксированной сети. По умолчанию: 10.0.0.0/24"
 
-msgid "UPDATE COMPLETE"
-msgstr "Обновление завершено"
-
-msgid "UPDATE FAILED"
-msgstr "Обновление не удалось"
-
-msgid "UPDATE IN PROGRESS"
-msgstr "Выполняется обновление"
-
 msgid "Unable to create cluster template."
 msgstr "Не удалось создать шаблон кластера."
 
@@ -1008,8 +994,8 @@ msgstr[2] "Не удалось удалить шаблоны кластера: %
 msgid "Unable to delete cluster: %s."
 msgid_plural "Unable to delete clusters: %s."
 msgstr[0] "Не удалось удалить кластер: %s."
-msgstr[1] "Не удалось удалить кластера: %s."
-msgstr[2] "Не удалось удалить кластера: %s."
+msgstr[1] "Не удалось удалить кластеры: %s."
+msgstr[2] "Не удалось удалить кластеры: %s."
 
 #, python-format
 msgid "Unable to delete quota: %s."
@@ -1040,14 +1026,14 @@ msgstr ""
 "Не удалось удалить квоту с ID проекта: %(projectId)s и ресурса: %(resource)s."
 
 msgid "Unable to get cluster's working nodes."
-msgstr "Не удалось получить работающие узлы кластера."
+msgstr "Не удалось получить рабочие узлы кластера."
 
 msgid "Unable to perform rolling upgrade."
 msgstr "Не удалось выполнить поэтапное обновление."
 
 msgid "Unable to process `Additional Labels`. Not all labels will be applied."
 msgstr ""
-"Не удалось обработать \"Дополнительные метки\". Не все метки будут применены."
+"Не удалось обработать `Дополнительные метки`. Не все метки будут применены."
 
 #, python-format
 msgid "Unable to resize given cluster id: %(id)s."
@@ -1091,23 +1077,22 @@ msgstr "Не удалось получить статистику."
 
 #, python-format
 msgid "Unable to rotate credentials for cluster \"%(name)s\" (%(id)s)."
-msgstr ""
-"Не удалось ротировать учетные данные для кластера \"%(name)s\" (%(id)s)."
+msgstr "Не удалось сменить учетные данные для кластера \"%(name)s\" (%(id)s)."
 
 #, python-format
 msgid ""
 "Unable to rotate credentials for cluster \"%(name)s\" (%(id)s): %(reason)s."
 msgstr ""
-"Не удалось ротировать учетные данные для кластера \"%(name)s\" (%(id)s): "
+"Не удалось сменить учетные данные для кластера \"%(name)s\" (%(id)s): "
 "%(reason)s."
 
 #, python-format
 msgid "Unable to rotate credentials for cluster %(id)s."
-msgstr "Не удалось ротировать учетные данные для кластера %(id)s."
+msgstr "Не удалось сменить учетные данные для кластера %(id)s."
 
 #, python-format
 msgid "Unable to rotate credentials for cluster %(id)s: %(reason)s."
-msgstr "Не удалось ротировать учетные данные для кластера %(id)s: %(reason)s."
+msgstr "Не удалось сменить учетные данные для кластера %(id)s: %(reason)s."
 
 msgid "Unable to rotate the certificate."
 msgstr "Не удалось сменить сертификат."
@@ -1129,6 +1114,15 @@ msgstr "Обновить шаблон кластера"
 
 msgid "Update Quota"
 msgstr "Обновить квоту"
+
+msgid "Update complete"
+msgstr "Обновление завершено"
+
+msgid "Update failed"
+msgstr "Обновление не удалось"
+
+msgid "Update in progress"
+msgstr "Выполняется обновление"
 
 msgid "Updated"
 msgstr "Обновлен"
@@ -1178,8 +1172,8 @@ msgstr ""
 
 msgid "You cannot auto-scale to less than a single Worker Node."
 msgstr ""
-"Вы не можете выполнить автомасштабирование менее, чем до одного рабочего "
-"узла."
+"Вы не можете выполнить автоматическое масштабирование менее, чем до одного "
+"рабочего узла."
 
 msgid "You cannot resize to fewer than zero worker nodes."
 msgstr ""
